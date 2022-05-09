@@ -27,6 +27,21 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col">
+                <h1>{{counter}}</h1>
+                <hr>
+                <button v-on:click="incrementCounter" class="btn btn-outline-secondary">Increment</button>
+                &nbsp;
+                <button v-on:click="decrementCounter" class="btn btn-outline-secondary">Decrement</button>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <my-component></my-component>
+            </div>
+        </div>
     </div>
 
 
@@ -34,12 +49,32 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script>
         let data = {
+            counter: 0,
             message: "hello Vue"
+        }
+
+        const MyComponent = {
+            props: [],
+            template: `
+            <h1>My Component</h1>
+            `
         }
 
         const vm = Vue.createApp({
             data() {
                 return data;
+            }, 
+            methods: {
+                incrementCounter() {
+                    this.counter++;
+                },
+                decrementCounter(){
+                    this.counter--;
+                }
+
+            },
+            components: {
+                MyComponent,
             }
         }).mount("#app")
     </script>
